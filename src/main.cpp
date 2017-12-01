@@ -207,9 +207,9 @@ bool handleResetService(um7::Comms* sensor,
 void publishMsgs(um7::Registers& r, ros::NodeHandle* imu_nh, sensor_msgs::Imu& imu_msg, bool tf_ned_to_enu)
 {
   static ros::Publisher imu_pub = imu_nh->advertise<sensor_msgs::Imu>("data", 1, false);
-  static ros::Publisher mag_pub = imu_nh->advertise<geometry_msgs::Vector3Stamped>("mag", 1, false);
-  static ros::Publisher rpy_pub = imu_nh->advertise<geometry_msgs::Vector3Stamped>("rpy", 1, false);
-  static ros::Publisher temp_pub = imu_nh->advertise<std_msgs::Float32>("temperature", 1, false);
+  //static ros::Publisher mag_pub = imu_nh->advertise<geometry_msgs::Vector3Stamped>("mag", 1, false);
+  //static ros::Publisher rpy_pub = imu_nh->advertise<geometry_msgs::Vector3Stamped>("rpy", 1, false);
+  //static ros::Publisher temp_pub = imu_nh->advertise<std_msgs::Float32>("temperature", 1, false);
 
   if (imu_pub.getNumSubscribers() > 0)
   {
@@ -252,7 +252,7 @@ void publishMsgs(um7::Registers& r, ros::NodeHandle* imu_nh, sensor_msgs::Imu& i
     imu_pub.publish(imu_msg);
   }
 
-  // Magnetometer.  transform to ROS axes
+/*  // Magnetometer.  transform to ROS axes
   if (mag_pub.getNumSubscribers() > 0)
   {
     geometry_msgs::Vector3Stamped mag_msg;
@@ -304,7 +304,7 @@ void publishMsgs(um7::Registers& r, ros::NodeHandle* imu_nh, sensor_msgs::Imu& i
     std_msgs::Float32 temp_msg;
     temp_msg.data = r.temperature.get_scaled(0);
     temp_pub.publish(temp_msg);
-  }
+  }*/
 }
 
 /**
